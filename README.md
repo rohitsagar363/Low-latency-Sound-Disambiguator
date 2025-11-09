@@ -209,7 +209,8 @@ Audio Stream → Preprocess → YAMNet Classification →
 | [Mistral](https://mistral.ai/) | LLM used for AI summaries |
 | [Flaticon](https://www.flaticon.com/) | Alert icons |
 | [NumPy / SciPy](https://scipy.org/) | DSP tools |
-| **Developed by:** [Rohith Sagar Karnala](https://github.com/rohitsagar363) | University at Buffalo, MS CSE |
+| 
+|
 
 ---
 
