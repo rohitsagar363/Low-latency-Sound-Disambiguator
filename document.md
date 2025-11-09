@@ -1,4 +1,15 @@
-# 🎧 Low-Latency Sound Disambiguator
+# 🎧 Low-Latency Sou## 🚨 Use Case Example: Police Siren Detection
+
+<div align="center">
+
+### Without Sound Disambiguator
+![Without System](./assets/images/before_siren.png)
+*A deaf person unable to hear approaching emergency vehicle sirens*
+
+### With Sound Disambiguator
+![With System](./assets## 🏁 Summary
+
+The **Low-Latency Sound Disambiguator** represents an accessible, intelligent, and privacy-respecting approach to real-time audio awareness. It's lightweight, responsive, and extendable — bridging AI, accessibility, and edge computing into one unified platform..png)guator
 
 > Real-Time Audio Intelligence Dashboard for Sound Awareness
 
@@ -23,11 +34,11 @@ The **Low-Latency Sound Disambiguator** is an innovative real-time audio intelli
 <div align="center">
 
 ### Without Sound Disambiguator
-![Without System](./images/before_siren.png)
+![Without System](/images/before_siren.png)
 *A deaf person unable to hear approaching emergency vehicle sirens*
 
 ### With Sound Disambiguator
-![With System](./images/with_siren.png)
+![With System](/images/with_siren.png)
 *Real-time visual alert showing:*
 - 🚓 **Detection**: Police siren detected
 - 📍 **Direction**: Coming from behind, ~100m away
@@ -53,46 +64,47 @@ The **Low-Latency Sound Disambiguator** is an innovative real-time audio intelli
 ## 📊 Dashboard Interface
 
 ### 🎯 Live Tab
-![Live Dashboard](./images/live_tab.png)
-- Real-time sound detection and classification
-- Current sound type and confidence level
+![Live Dashboard](/images/live_tab.png)
+*Real-time monitoring and detection interface*
+- Sound classification with confidence levels
 - Direction indicator with spatial awareness
 - Color-coded alert banner system
 - Live AI interpretations of detected sounds
 
 ### 📜 History Tab
-![History View](./images/history_tab.png)
+![History View](/images/history_tab.png)
+*Historical data and event tracking*
 - Chronological log of detected sounds
 - Time-stamped events with classifications
 - Filter and search functionality
 - Export capabilities for analysis
-- Detailed event information on demand
 
 ### 📈 Analytics Tab
-![Analytics Dashboard](./images/analytics_tab.png)
+![Analytics Dashboard](/images/analytics_tab.png)
+*Statistical analysis and insights*
 - Sound type distribution charts
 - Temporal pattern analysis
 - Alert frequency statistics
 - Performance metrics visualization
-- Custom date range analysis
 
 ### 🧠 Insights Tab
-![AI Insights](./images/insights_tab.png)
-- AI-generated context interpretations
+![AI Insights](/images/insights_tab.png)
+*AI-powered interpretation and recommendations*
+- Contextual sound interpretations
 - Pattern recognition summaries
 - Environmental safety scoring
-- Trend analysis and predictions
 - Actionable safety recommendations
 
-> **Note**: Place your actual dashboard screenshots in the `images` directory:
-> - `live_tab.png`: Main monitoring interface
-> - `history_tab.png`: Historical data view
-> - `analytics_tab.png`: Statistical analysis view
-> - `insights_tab.png`: AI interpretation view
+> **📸 Screenshots:** Place your application screenshots in `/images/`:
+> - `live_tab.png` - Main monitoring interface
+> - `history_tab.png` - Historical data view
+> - `analytics_tab.png` - Statistical analysis view
+> - `insights_tab.png` - AI interpretation view
+> - `before_siren.png` - Use case without system
+> - `with_siren.png` - Use case with system active
 
 ---
 
-## 🏗️ Architecture
 ## 🏗️ System Architecture
 
 ```mermaid
@@ -373,11 +385,11 @@ Area	Next Step
 💬 Haptic Feedback	Wearable integration for vibration alerts.
 
 👨‍💻 Team: Udta Buffalo 🦬
-Member	Role
-Rohith Sagar Karnala	System Architecture, Streamlit Dashboard, ML Integration
-Bhargav	Backend Logic, Audio Processing, Model Integration
-Amal	Frontend Design, Visualization, Accessibility Enhancements
-Manogna	AI Summarization, Testing, Hackathon Presentation
+Member
+Rohith Sagar Karnala	
+Bhargav
+Amal
+Manogna
 
 🏁 Hackathon Highlights
 ⚙️ Fully functional end-to-end local demo.
@@ -399,8 +411,3 @@ Ollama (Mistral) – local LLM context generation.
 Streamlit – dashboard framework.
 
 University at Buffalo Hackathon Team – Udta Buffalo 🦬
-
-📍 Repository: GitHub Link Placeholder
-📧 Contact: rohithsagarkarnala@gmail.com
-📅 Year: 2025
-🌐 Keywords: AI Accessibility • Edge Computing • Audio Intelligence • Real-Time Systems
