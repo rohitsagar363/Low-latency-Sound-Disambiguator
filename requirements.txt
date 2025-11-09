@@ -5,3 +5,5 @@ tensorflow
 tensorflow-hub
 scipy
 matplotlib
+Pillow
+pandas
