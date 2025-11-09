@@ -1,13 +1,114 @@
-# 🎧 Low-Latency Sou## 🚨 Use Case Example: Police Siren Detection
+# 🎧 Low-Latency Sound Disambiguator
+
+<div align="center">
+
+> Real-Time Audio Intelligence Dashboard for Sound Awareness
+
+[![Hackathon Track](https://img.shields.io/badge/Track-AI%20for%20Accessibility-blue)](https://github.com/rohitsagar363/Low-latency-Sound-Disambiguator)
+[![Edge Intelligence](https://img.shields.io/badge/Technology-Edge%20Intelligence-green)](https://github.com/rohitsagar363/Low-latency-Sound-Disambiguator)
+
+</div>
+
+## 🎯 Mission
+
+Empowering deaf and hearing-impaired individuals with real-time sound awareness through AI-powered visual alerts.
+
+## 🧩 Overview
+
+The **Low-Latency Sound Disambiguator** transforms environmental sounds into instant visual alerts, making the auditory world accessible to everyone. Our system:
+
+- 🎤 **Captures** continuous audio input in real-time
+- 🤖 **Analyzes** sounds using Google's YAMNet ML model
+- 🧠 **Interprets** context through Ollama (Mistral) AI
+- 📊 **Visualizes** alerts through an intuitive dashboard
+
+## 🚨 Use Case Example: Police Siren Detection
 
 <div align="center">
 
 ### Without Sound Disambiguator
-![Without System](./assets/images/before_siren.png)
+<img src="/images/before_siren.png" alt="Without System" width="600"/>
+
 *A deaf person unable to hear approaching emergency vehicle sirens*
 
 ### With Sound Disambiguator
-![With System](./assets## 🏁 Summary
+<img src="/images/with_siren.png" alt="With System" width="600"/>
+
+*Real-time visual alert showing:*
+- 🚓 **Detection**: Police siren detected
+- 📍 **Direction**: Coming from behind, ~100m away
+- 🔊 **Intensity**: High (Emergency vehicle approaching)
+- ⚠️ **Action Required**: Move to the side of the road
+
+</div>
+
+## 📊 Dashboard Interface
+
+### 🎯 Live Tab
+<img src="/images/live_tab.png" alt="Live Dashboard" width="800"/>
+
+*Real-time monitoring and detection interface*
+- Sound classification with confidence levels
+- Direction indicator with spatial awareness
+- Color-coded alert banner system
+- Live AI interpretations of detected sounds
+
+### 📜 History Tab
+<img src="/images/history_tab.png" alt="History View" width="800"/>
+
+*Historical data and event tracking*
+- Chronological log of detected sounds
+- Time-stamped events with classifications
+- Filter and search functionality
+- Export capabilities for analysis
+
+### 📈 Analytics Tab
+<img src="/images/analytics_tab.png" alt="Analytics Dashboard" width="800"/>
+
+*Statistical analysis and insights*
+- Sound type distribution charts
+- Temporal pattern analysis
+- Alert frequency statistics
+- Performance metrics visualization
+
+### 🧠 Insights Tab
+<img src="/images/insights_tab.png" alt="AI Insights" width="800"/>
+
+*AI-powered interpretation and recommendations*
+- Contextual sound interpretations
+- Pattern recognition summaries
+- Environmental safety scoring
+- Actionable safety recommendations
+
+## 🏗️ System Architecture
+
+```mermaid
+graph TD
+    A[🎤 Microphone Input] --> B[SoundDevice Stream]
+    B --> C[YAMNet Model]
+    C --> D{Sound Classification}
+    D -->|Confidence & Label| E[Live Dashboard]
+    D -->|Events| H[Analytics Engine]
+    E --> F[Ollama Mistral]
+    F --> G[Insights Generation]
+    H --> I[Historical Data]
+    E --> J[Alert System]
+    J -->|Status| K[Visual Indicators]
+    style A fill:#f9f,stroke:#333,stroke-width:2px
+    style D fill:#bbf,stroke:#333,stroke-width:2px
+    style J fill:#fbb,stroke:#333,stroke-width:2px
+```
+
+## 🧰 Technology Stack
+
+| Layer | Components | Description |
+|-------|------------|-------------|
+| 🎨 Frontend | Streamlit, Plotly | Interactive dashboard with real-time updates |
+| 🎵 Audio | SoundDevice, NumPy | High-performance audio stream processing |
+| 🤖 ML/AI | TensorFlow Hub, YAMNet | Sound classification and analysis |
+| 🧠 Intelligence | Ollama (Mistral) | Local LLM for context interpretation |
+| 🔄 Processing | Threading, Queue | Concurrent operation handling |
+| 📊 Visualization | Plotly, Custom CSS | Dynamic charts and alert banners |
 
 The **Low-Latency Sound Disambiguator** represents an accessible, intelligent, and privacy-respecting approach to real-time audio awareness. It's lightweight, responsive, and extendable — bridging AI, accessibility, and edge computing into one unified platform..png)guator
 
@@ -272,10 +373,10 @@ Area	Next Steps
 👨‍💻 Team
 Team: Udta Buffalo 🦬
 Member	Role
-Rohith Sagar Karnala	System Architecture, Streamlit Dashboard, ML Integration
-Bhargav	Backend Logic, Audio Processing, Model Integration
-Amal	Frontend Design, Visualization, Accessibility Enhancements
-Manogna	AI Summarization, Testing, Hackathon Presentation
+Rohith Sagar Karnala
+Bhargav
+Amal	
+Manogna
 
 🏁 Hackathon Demo Highlights
 Show real-time sound detection and floating alert banners.
@@ -299,115 +400,3 @@ Streamlit for rapid dashboard development.
 🎯 Low-Latency Sound Disambiguator represents an accessible, intelligent, and privacy-respecting approach to real-time audio awareness.
 It’s lightweight, responsive, and extendable — bridging AI, accessibility, and edge computing into one unified platform.
 
-
-## 🚀 Project Overview  
-The **Low-Latency Sound Disambiguator** is a **real-time AI-powered sound awareness dashboard** designed to help **deaf and hearing-impaired users**.  
-It detects, classifies, and interprets sounds instantly using:  
-- **Google’s YAMNet (TensorFlow Hub)** for sound classification.  
-- **Ollama (Mistral LLM)** for AI-based contextual summaries.  
-- **Streamlit** for dynamic visualization and alert banners.
-
-**🏆 Hackathon Track:** AI for Accessibility / Edge Intelligence  
-**🎯 Goal:** Convert environmental sounds into intelligent visual alerts for rapid human response.
-
----
-
-## ⚙️ System Architecture
-```mermaid
-graph TD
-A[🎤 Microphone Input] --> B[SoundDevice Stream]
-B --> C[YAMNet Classifier (TFHub)]
-C --> D{Detected Sound Label}
-D -->|Confidence| E[Streamlit Live Dashboard]
-E --> F[Ollama (Mistral) Contextual AI]
-F --> G[🧠 Insights & Alerts]
-E --> H[📊 History + Analytics Tabs]
-G --> I[🔴 Floating Alert Banner]
-💡 Key Features
-⚡ Ultra-low latency detection pipeline (1.5s sliding window).
-
-🧩 AI-driven contextual summaries for every detected sound.
-
-🟢🟡🔴 Color-coded alerts: Safe / Neutral / Emergency.
-
-🎧 Stereo microphone support for true directional awareness.
-
-📈 Live analytics dashboard showing confidence, direction, amplitude.
-
-💻 Completely local inference — private and offline.
-
-🖥️ Dashboard Interface
-🔴 Real-Time Detection
-
-🧠 AI Summaries & Context
-
-🟢 Normal Operation
-
-🧰 Technology Stack
-Category	Tool
-ML Model	TensorFlow Hub – YAMNet
-AI Reasoning	Ollama (Mistral LLM)
-Dashboard	Streamlit, Plotly
-Audio Ingestion	SoundDevice, NumPy
-Processing	Threading + Async Queues
-Deployment	Python 3.11, Localhost
-
-⚡ Setup Guide
-bash
-Copy code
-# Clone & Setup
-git clone https://github.com/<your-handle>/Low-latency-Sound-Disambiguator.git
-cd Low-latency-Sound-Disambiguator
-pip install -r requirements.txt
-
-# Start Ollama
-ollama pull mistral
-ollama serve
-
-# Run App
-streamlit run sound_alert_appv3.py
-🧩 Demonstration Flow
-Start listening via the Streamlit UI.
-
-Generate sounds (music, alarms, voices).
-
-Observe instant classification, AI insight, and floating alert banner.
-
-Review detection history and analytics trends.
-
-📡 Future Enhancements
-Area	Next Step
-🔔 IoT Integration	Deploy on Raspberry Pi for edge alerts.
-📱 Mobile Companion	Push notifications for critical events.
-🎙️ Multi-Mic Array	Triangulate true sound direction.
-🧠 Emotion Detection	Use LLMs to assess urgency and tone.
-🌐 Cloud Extension	Real-time alert dashboard with MQTT.
-💬 Haptic Feedback	Wearable integration for vibration alerts.
-
-👨‍💻 Team: Udta Buffalo 🦬
-Member
-Rohith Sagar Karnala	
-Bhargav
-Amal
-Manogna
-
-🏁 Hackathon Highlights
-⚙️ Fully functional end-to-end local demo.
-
-💡 AI-generated live summaries and context.
-
-📊 Real-time dashboard with analytics and insights.
-
-🌍 Accessibility-focused impact for deaf users.
-
-🧠 Impact
-The Low-Latency Sound Disambiguator demonstrates how AI and accessibility can merge to improve everyday safety and awareness — empowering those with hearing impairments through instant, intelligent, and interpretable sound recognition.
-
-🏆 Acknowledgments
-Google TensorFlow Hub – YAMNet model.
-
-Ollama (Mistral) – local LLM context generation.
-
-Streamlit – dashboard framework.
-
-University at Buffalo Hackathon Team – Udta Buffalo 🦬
