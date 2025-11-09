@@ -117,15 +117,29 @@ conf_threshold = st.sidebar.slider("Alert sensitivity (conf %)", 50, 90, 70)
 run = st.sidebar.button("▶️ Start Listening")
 
 # -------------------- TABS (Dynamic Only, no duplicates or state errors) --------------------
-with st.container():
-    tabs = st.tabs(["🎧 Live", "📜 History", "📈 Analytics", "🧠 Insights"])
-    live_placeholder = tabs[0].empty()
-    history_placeholder = tabs[1].empty()
-    analytics_placeholder = tabs[2].empty()
-    insights_placeholder = tabs[3].empty()
+# -------------------- TABS (Created once globally) --------------------
+if "tabs" not in st.session_state:
+    tab_container = st.container()
+    with tab_container:
+        tabs = st.tabs(["🎧 Live", "📜 History", "📈 Analytics", "🧠 Insights"])
+        st.session_state["tabs"] = tabs
+        st.session_state["live_placeholder"] = tabs[0].empty()
+        st.session_state["history_placeholder"] = tabs[1].empty()
+        st.session_state["analytics_placeholder"] = tabs[2].empty()
+        st.session_state["insights_placeholder"] = tabs[3].empty()
+
+tabs = st.session_state["tabs"]
+live_placeholder = st.session_state["live_placeholder"]
+history_placeholder = st.session_state["history_placeholder"]
+analytics_placeholder = st.session_state["analytics_placeholder"]
+insights_placeholder = st.session_state["insights_placeholder"]
+
+# Hide static duplicate bar (CSS safety net)
+st.markdown("<style>div[data-baseweb='tab-list'] + div[data-baseweb='tab-list']{display:none !important;}</style>", unsafe_allow_html=True)
 
 # -------------------- MAIN LOOP --------------------
-if run:
+if run and not st.session_state.get("listening_active", False):
+    st.session_state["listening_active"] = True
     st.toast("🎧 Listening … Press Ctrl + C to stop.")
     stop_flag = False
     threading.Thread(target=audio_stream_listener, daemon=True).start()
@@ -136,11 +150,10 @@ if run:
                 time.sleep(0.1)
                 continue
 
-            # Always process latest buffer only
             while not audio_queue.empty():
                 audio, use_fake_dir = audio_queue.get()
 
-            # --- DETECTION & ALERT LOGIC ---
+            # --- DETECTION LOGIC ---
             lab, conf = classify(audio)
             ang = estimate_direction(audio, use_fake=use_fake_dir)
             now = datetime.now()
@@ -163,7 +176,6 @@ if run:
             else:
                 badge = "🟡 Neutral"
 
-            # --- UPDATE STATE ---
             event = {"id": response_id, "time": timestamp, "label": lab,
                      "conf": conf, "dir": ang, "amp": amp, "ai": ai, "badge": badge}
             st.session_state["hist"].insert(0, event)
@@ -174,19 +186,16 @@ if run:
             st.session_state["ai"].insert(0, f"{badge} | {ai}")
             st.session_state["ai"] = st.session_state["ai"][:5]
 
-            # --- VISUAL ALERT BANNER ---
+            # --- ALERT BANNER ---
             if "🔴" in badge:
                 color, border = "#fee2e2", "#ef4444"
-                heading = f"🚨 ALERT: {lab.upper()} DETECTED!"
-                note = "Immediate attention required."
+                heading, note = f"🚨 ALERT: {lab.upper()} DETECTED!", "Immediate attention required."
             elif "🟡" in badge:
                 color, border = "#fef9c3", "#eab308"
-                heading = f"⚠️ WARNING: {lab.upper()}"
-                note = "Monitor surroundings carefully."
+                heading, note = f"⚠️ WARNING: {lab.upper()}", "Monitor surroundings carefully."
             else:
                 color, border = "#dcfce7", "#16a34a"
-                heading = f"✅ SAFE: {lab.upper()}"
-                note = "No immediate action required."
+                heading, note = f"✅ SAFE: {lab.upper()}", "No immediate action required."
 
             alert_html = f"""
                 <div style="position:fixed;top:100px;right:50px;
@@ -202,12 +211,9 @@ if run:
                     <h3 style="margin:0;color:#1e293b;">{heading}</h3>
                     <p style="margin-top:4px;color:#334155;font-size:15px;">{note}</p>
                 </div>
-                <style>
-                @keyframes flash {{
-                    0%{{opacity:0.6;}} 50%{{opacity:1;}} 100%{{opacity:0.6;}}
-                }}
-                </style>
-            """
+                <style>@keyframes flash {{
+                    0%{{opacity:0.6;}}50%{{opacity:1;}}100%{{opacity:0.6;}}
+                }}</style>"""
             st.session_state["alert_placeholder"].markdown(alert_html, unsafe_allow_html=True)
 
             # --- LIVE TAB ---
@@ -224,7 +230,7 @@ if run:
             with history_placeholder.container():
                 st.markdown("### 📜 Detection History (Latest 5)")
                 df = pd.DataFrame(st.session_state["hist"])
-                st.dataframe(df[["id", "time", "label", "conf", "dir", "ai"]],
+                st.dataframe(df[["id","time","label","conf","dir","ai"]],
                              use_container_width=True, hide_index=True, height=250)
 
             # --- ANALYTICS TAB ---
@@ -255,5 +261,6 @@ if run:
 
         except KeyboardInterrupt:
             stop_flag = True
+            st.session_state["listening_active"] = False
             st.warning("🛑 Stopped listening.")
             break
